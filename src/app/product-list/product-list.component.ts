@@ -11,6 +11,8 @@ export class ProductListComponent {
     products: Product[] = [];
     selectedProduct!: Product;
     constructor(private productService: ProductService) {}
+
+    //ngOnInit is called after the constructor
     ngOnInit(): void {
       this.getProducts();
     }
@@ -20,7 +22,6 @@ export class ProductListComponent {
     }
     // GET DATA FROM SERVICE
     getProducts(): void {
-      this.products =
-          this.productService.getProducts();
+      this.products = this.productService.getProducts();
   }
 }
