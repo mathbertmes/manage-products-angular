@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../Product';
-import { PRODUCTS } from '../products';
+import { ProductService } from "../services/product.service"
 
 @Component({
   selector: 'app-product-list',
@@ -8,11 +8,19 @@ import { PRODUCTS } from '../products';
   styleUrl: './product-list.component.css'
 })
 export class ProductListComponent {
-  products = PRODUCTS;
+    products: Product[] = [];
     selectedProduct!: Product;
-    constructor() {}
-    ngOnInit(): void {}
+    constructor(private productService: ProductService) {}
+    ngOnInit(): void {
+      this.getProducts();
+    }
+
     onSelect(product: Product): void {
         this.selectedProduct = product;
     }
+    // GET DATA FROM SERVICE
+    getProducts(): void {
+      this.products =
+          this.productService.getProducts();
+  }
 }
